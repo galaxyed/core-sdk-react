@@ -20,7 +20,7 @@ import {
   ICache,
   GetTokenSilentlyOptions,
   User,
-} from '@icanid/icanid-sdk-spa-js';
+} from '@auth0/auth0-spa-js';
 import Auth0Context, {
   Auth0ContextInterface,
   RedirectLoginOptions,
@@ -38,9 +38,9 @@ export type AppState = {
 };
 
 /**
- * The main configuration to instantiate the `ICANIDProvider`.
+ * The main configuration to instantiate the `Auth0Provider`.
  */
-export interface ICANIDProviderOptions {
+export interface Auth0ProviderOptions {
   /**
    * The child nodes your Provider has wrapped
    */
@@ -57,7 +57,7 @@ export interface ICANIDProviderOptions {
    * instances you can instruct the client to ignore them eg
    *
    * ```jsx
-   * <ICANIDProvider
+   * <Auth0Provider
    *   clientId={clientId}
    *   domain={domain}
    *   skipRedirectCallback={window.location.pathname === '/stripe-oauth-callback'}
@@ -79,10 +79,6 @@ export interface ICANIDProviderOptions {
    * The Client ID found on your Application settings page
    */
   clientId: string;
-  /**
-   * The Client Secret
-   */
-  clientSecret: string;
   /**
    * The default URL where Auth0 will redirect your browser to with
    * the authentication result. It must be whitelisted in
@@ -168,21 +164,21 @@ export interface ICANIDProviderOptions {
    */
   connection?: string;
   /**
-   * Context to be used when creating the ICANIDProvider, defaults to the internally created context.
+   * Context to be used when creating the Auth0Provider, defaults to the internally created context.
    *
-   * This allows multiple ICANIDProviders to be nested within the same application, the context value can then be
-   * passed to useICANID, withAuth0, or withAuthenticationRequired to use that specific ICANIDProvider to access
+   * This allows multiple Auth0Providers to be nested within the same application, the context value can then be
+   * passed to useAuth0, withAuth0, or withAuthenticationRequired to use that specific Auth0Provider to access
    * auth state and methods specifically tied to the provider that the context belongs to.
    *
-   * When using multiple ICANIDProviders in a single application you should do the following to ensure sessions are not
+   * When using multiple Auth0Providers in a single application you should do the following to ensure sessions are not
    * overwritten:
    *
-   * * Configure a different redirect_uri for each ICANIDProvider, and set skipRedirectCallback for each provider to ignore
+   * * Configure a different redirect_uri for each Auth0Provider, and set skipRedirectCallback for each provider to ignore
    * the others redirect_uri
-   * * If using localstorage for both ICANIDProviders, ensure that the audience and scope are different for so that the key
+   * * If using localstorage for both Auth0Providers, ensure that the audience and scope are different for so that the key
    * used to store data is different
    *
-   * For a sample on using multiple ICANIDProviders review the [React Account Linking Sample](https://github.com/auth0-samples/auth0-link-accounts-sample/tree/react-variant)
+   * For a sample on using multiple Auth0Providers review the [React Account Linking Sample](https://github.com/auth0-samples/auth0-link-accounts-sample/tree/react-variant)
    */
   context?: React.Context<Auth0ContextInterface>;
   /**
@@ -202,17 +198,16 @@ declare const __VERSION__: string;
  * @ignore
  */
 const toAuth0ClientOptions = (
-  opts: ICANIDProviderOptions
+  opts: Auth0ProviderOptions
 ): Auth0ClientOptions => {
-  const { clientId, clientSecret, redirectUri, maxAge, ...validOpts } = opts;
+  const { clientId, redirectUri, maxAge, ...validOpts } = opts;
   return {
     ...validOpts,
     client_id: clientId,
-    client_secret: clientSecret,
     redirect_uri: redirectUri,
     max_age: maxAge,
     auth0Client: {
-      name: 'icanid-sdk-react',
+      name: 'auth0-react',
       version: __VERSION__,
     },
   };
@@ -247,19 +242,18 @@ const defaultOnRedirectCallback = (appState?: AppState): void => {
 
 /**
  * ```jsx
- * <ICANIDProvider
+ * <Auth0Provider
  *   domain={domain}
  *   clientId={clientId}
  *   redirectUri={window.location.origin}>
  *   <MyApp />
- * </ICANIDProvider>
+ * </Auth0Provider>
  * ```
  *
  * Provides the Auth0Context to its child components.
  */
-const ICANIDProvider = (opts: ICANIDProviderOptions): JSX.Element => {
+const Auth0Provider = (opts: Auth0ProviderOptions): JSX.Element => {
   const {
-    // clientSecret,
     children,
     skipRedirectCallback,
     onRedirectCallback = defaultOnRedirectCallback,
@@ -385,7 +379,7 @@ const ICANIDProvider = (opts: ICANIDProviderOptions): JSX.Element => {
   );
 
   const getIdTokenClaims = useCallback(
-    (opts: any) => client.getIdTokenClaims(opts),
+    (opts) => client.getIdTokenClaims(opts),
     [client]
   );
 
@@ -434,4 +428,4 @@ const ICANIDProvider = (opts: ICANIDProviderOptions): JSX.Element => {
   return <context.Provider value={contextValue}>{children}</context.Provider>;
 };
 
-export default ICANIDProvider;
+export default Auth0Provider;

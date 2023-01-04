@@ -12,7 +12,7 @@ import {
   RedirectLoginResult,
   User,
   GetTokenSilentlyVerboseResponse,
-} from '@icanid/icanid-sdk-spa-js';
+} from '@auth0/auth0-spa-js';
 import { createContext } from 'react';
 import { AuthState, initialAuthState } from './auth-state';
 
@@ -37,7 +37,7 @@ export interface RedirectLoginOptions extends BaseLoginOptions {
 }
 
 /**
- * Contains the authenticated state and authentication methods provided by the `useICANID` hook.
+ * Contains the authenticated state and authentication methods provided by the `useAuth0` hook.
  */
 export interface Auth0ContextInterface<TUser extends User = User>
   extends AuthState<TUser> {
@@ -184,7 +184,7 @@ export interface Auth0ContextInterface<TUser extends User = User>
  * @ignore
  */
 const stub = (): never => {
-  throw new Error('You forgot to wrap your component in <ICANIDProvider>.');
+  throw new Error('You forgot to wrap your component in <Auth0Provider>.');
 };
 
 /**

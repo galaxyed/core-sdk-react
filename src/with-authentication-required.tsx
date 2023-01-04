@@ -1,6 +1,6 @@
 import React, { ComponentType, useEffect, FC } from 'react';
-import { RedirectLoginOptions, User } from '@icanid/icanid-sdk-spa-js';
-import useICANID from './use-icanid';
+import { RedirectLoginOptions, User } from '@auth0/auth0-spa-js';
+import useAuth0 from './use-auth0';
 import Auth0Context, { Auth0ContextInterface } from './auth0-context';
 
 /**
@@ -68,8 +68,8 @@ export interface WithAuthenticationRequiredOptions {
   claimCheck?: (claims?: User) => boolean;
 
   /**
-   * The context to be used when calling useICANID, this should only be provided if you are using multiple ICANIDProviders
-   * within your application and you wish to tie a specific component to a ICANIDProvider other than the ICANIDProvider
+   * The context to be used when calling useAuth0, this should only be provided if you are using multiple Auth0Providers
+   * within your application and you wish to tie a specific component to a Auth0Provider other than the Auth0Provider
    * associated with the default Auth0Context.
    */
   context?: React.Context<Auth0ContextInterface>;
@@ -97,7 +97,7 @@ const withAuthenticationRequired = <P extends object>(
     } = options;
 
     const { user, isAuthenticated, isLoading, loginWithRedirect } =
-      useICANID(context);
+      useAuth0(context);
 
     /**
      * The route is authenticated if the user has valid auth and there are no

@@ -11,7 +11,7 @@ import analyze from 'rollup-plugin-analyzer';
 import { createApp } from './scripts/oidc-provider';
 
 const isProduction = process.env.NODE_ENV === 'production';
-const name = 'reactICANID';
+const name = 'reactAuth0';
 const input = 'src/index.tsx';
 const globals = {
   react: 'React',
@@ -32,7 +32,7 @@ export default [
     output: [
       {
         name,
-        file: 'dist/icanid-sdk-react.js',
+        file: 'dist/auth0-react.js',
         format: 'umd',
         globals,
         sourcemap: true,
@@ -62,7 +62,7 @@ export default [
           output: [
             {
               name,
-              file: 'dist/icanid-sdk-react.min.js',
+              file: 'dist/auth0-react.min.js',
               format: 'umd',
               globals,
               sourcemap: true,
