@@ -5,7 +5,15 @@ import ICANIDContext, { ICANIDContextInterface } from './icanid-context';
  * Components wrapped in `withICANID` will have an additional `icanid` prop
  */
 export interface WithICANIDProps {
+<<<<<<< HEAD
   icanid: ICANIDContextInterface;
+=======
+<<<<<<<< HEAD:src/with-auth0.tsx
+  icanid: ICANIDContextInterface;
+========
+  auth0: ICANIDContextInterface;
+>>>>>>>> 09d2924 (with-icanid):src/with-icanid.tsx
+>>>>>>> 09d2924 (with-icanid)
 }
 
 /**
