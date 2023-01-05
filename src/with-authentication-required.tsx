@@ -1,7 +1,7 @@
 import React, { ComponentType, useEffect, FC } from 'react';
 import { RedirectLoginOptions, User } from '@icanid/icanid-sdk-spa-js';
 import useICANID from './use-icanid';
-import Auth0Context, { Auth0ContextInterface } from './auth0-context';
+import ICANIDContext, { ICANIDContextInterface } from './icanid-context';
 
 /**
  * @ignore
@@ -70,9 +70,9 @@ export interface WithAuthenticationRequiredOptions {
   /**
    * The context to be used when calling useICANID, this should only be provided if you are using multiple ICANIDProviders
    * within your application and you wish to tie a specific component to a ICANIDProvider other than the ICANIDProvider
-   * associated with the default Auth0Context.
+   * associated with the default ICANIDContext.
    */
-  context?: React.Context<Auth0ContextInterface>;
+  context?: React.Context<ICANIDContextInterface>;
 }
 
 /**
@@ -93,7 +93,7 @@ const withAuthenticationRequired = <P extends object>(
       onRedirecting = defaultOnRedirecting,
       claimCheck = (): boolean => true,
       loginOptions,
-      context = Auth0Context,
+      context = ICANIDContext,
     } = options;
 
     const { user, isAuthenticated, isLoading, loginWithRedirect } =

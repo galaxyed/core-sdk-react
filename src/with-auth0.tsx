@@ -1,11 +1,11 @@
 import React, { ComponentType } from 'react';
-import Auth0Context, { Auth0ContextInterface } from './auth0-context';
+import ICANIDContext, { ICANIDContextInterface } from './icanid-context';
 
 /**
- * Components wrapped in `withAuth0` will have an additional `auth0` prop
+ * Components wrapped in `withAuth0` will have an additional `icanid` prop
  */
 export interface WithAuth0Props {
-  auth0: Auth0ContextInterface;
+  auth0: ICANIDContextInterface;
 }
 
 /**
@@ -21,19 +21,19 @@ export interface WithAuth0Props {
  * export default withAuth0(MyComponent);
  * ```
  *
- * Wrap your class components in this Higher Order Component to give them access to the Auth0Context.
+ * Wrap your class components in this Higher Order Component to give them access to the ICANIDContext.
  *
- * Providing a context as the second argument allows you to configure the ICANIDProvider the Auth0Context
+ * Providing a context as the second argument allows you to configure the ICANIDProvider the ICANIDContext
  * should come from f you have multiple within your application.
  */
 const withAuth0 = <P extends WithAuth0Props>(
   Component: ComponentType<P>,
-  context = Auth0Context
+  context = ICANIDContext
 ): ComponentType<Omit<P, keyof WithAuth0Props>> => {
   return function WithAuth(props): JSX.Element {
     return (
       <context.Consumer>
-        {(auth: Auth0ContextInterface): JSX.Element => (
+        {(auth: ICANIDContextInterface): JSX.Element => (
           <Component {...(props as P)} auth0={auth} />
         )}
       </context.Consumer>

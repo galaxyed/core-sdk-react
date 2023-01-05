@@ -2,7 +2,7 @@ export {
   default as ICANIDProvider,
   ICANIDProviderOptions,
   AppState,
-} from './auth0-provider';
+} from './icanid-provider';
 export { default as useICANID } from './use-icanid';
 export { default as withAuth0, WithAuth0Props } from './with-auth0';
 export {
@@ -10,11 +10,11 @@ export {
   WithAuthenticationRequiredOptions,
 } from './with-authentication-required';
 export {
-  default as Auth0Context,
-  Auth0ContextInterface,
+  default as ICANIDContext,
+  ICANIDContextInterface,
   initialContext,
   RedirectLoginOptions,
-} from './auth0-context';
+} from './icanid-context';
 export {
   PopupLoginOptions,
   PopupConfigOptions,

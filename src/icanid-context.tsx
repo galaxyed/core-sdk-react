@@ -39,7 +39,7 @@ export interface RedirectLoginOptions extends BaseLoginOptions {
 /**
  * Contains the authenticated state and authentication methods provided by the `useICANID` hook.
  */
-export interface Auth0ContextInterface<TUser extends User = User>
+export interface ICANIDContextInterface<TUser extends User = User>
   extends AuthState<TUser> {
   /**
    * ```js
@@ -204,8 +204,8 @@ export const initialContext = {
 };
 
 /**
- * The Auth0 Context
+ * The ICANID Context
  */
-const Auth0Context = createContext<Auth0ContextInterface>(initialContext);
+const ICANIDContext = createContext<ICANIDContextInterface>(initialContext);
 
-export default Auth0Context;
+export default ICANIDContext;

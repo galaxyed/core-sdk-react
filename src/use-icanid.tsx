@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { User } from '@icanid/icanid-sdk-spa-js';
-import Auth0Context, { Auth0ContextInterface } from './auth0-context';
+import ICANIDContext, { ICANIDContextInterface } from './icanid-context';
 
 /**
  * ```js
@@ -25,8 +25,8 @@ import Auth0Context, { Auth0ContextInterface } from './auth0-context';
  * TUser is an optional type param to provide a type to the `user` field.
  */
 const useICANID = <TUser extends User = User>(
-  context = Auth0Context
-): Auth0ContextInterface<TUser> =>
-  useContext(context) as Auth0ContextInterface<TUser>;
+  context = ICANIDContext
+): ICANIDContextInterface<TUser> =>
+  useContext(context) as ICANIDContextInterface<TUser>;
 
 export default useICANID;

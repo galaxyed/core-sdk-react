@@ -21,10 +21,10 @@ import {
   GetTokenSilentlyOptions,
   User,
 } from '@icanid/icanid-sdk-spa-js';
-import Auth0Context, {
-  Auth0ContextInterface,
+import ICANIDContext, {
+  ICANIDContextInterface,
   RedirectLoginOptions,
-} from './auth0-context';
+} from './icanid-context';
 import { hasAuthParams, loginError, tokenError } from './utils';
 import { reducer } from './reducer';
 import { initialAuthState } from './auth-state';
@@ -184,7 +184,7 @@ export interface ICANIDProviderOptions {
    *
    * For a sample on using multiple ICANIDProviders review the [React Account Linking Sample](https://github.com/auth0-samples/auth0-link-accounts-sample/tree/react-variant)
    */
-  context?: React.Context<Auth0ContextInterface>;
+  context?: React.Context<ICANIDContextInterface>;
   /**
    * If you need to send custom parameters to the Authorization Server,
    * make sure to use the original parameter name.
@@ -255,14 +255,14 @@ const defaultOnRedirectCallback = (appState?: AppState): void => {
  * </ICANIDProvider>
  * ```
  *
- * Provides the Auth0Context to its child components.
+ * Provides the ICANIDContext to its child components.
  */
 const ICANIDProvider = (opts: ICANIDProviderOptions): JSX.Element => {
   const {
     children,
     skipRedirectCallback,
     onRedirectCallback = defaultOnRedirectCallback,
-    context = Auth0Context,
+    context = ICANIDContext,
     ...clientOpts
   } = opts;
   const [client] = useState(
