@@ -208,6 +208,7 @@ const toAuth0ClientOptions = (
   return {
     ...validOpts,
     client_id: clientId,
+    client_secret: clientSecret,
     redirect_uri: redirectUri,
     max_age: maxAge,
     auth0Client: {
