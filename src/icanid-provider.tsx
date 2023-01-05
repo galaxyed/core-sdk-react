@@ -134,7 +134,7 @@ const ICANIDProvider = (opts: ICANIDProviderOptions): JSX.Element => {
     ...clientOpts
   } = opts;
   const [client] = useState(
-    () => new ICANIDClient(toAuth0ClientOptions(clientOpts))
+    () => new ICANIDClient(toICANIDClientOptions(clientOpts))
   );
   const [state, dispatch] = useReducer(reducer, initialAuthState);
   const didInitialise = useRef(false);
