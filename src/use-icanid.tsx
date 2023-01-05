@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { User } from '@auth0/auth0-spa-js';
+import { User } from '@icanid/icanid-sdk-spa-js';
 import Auth0Context, { Auth0ContextInterface } from './auth0-context';
 
 /**
@@ -17,16 +17,16 @@ import Auth0Context, { Auth0ContextInterface } from './auth0-context';
  *   loginWithRedirect,
  *   loginWithPopup,
  *   logout,
- * } = useAuth0<TUser>();
+ * } = useICANID<TUser>();
  * ```
  *
- * Use the `useAuth0` hook in your components to access the auth state and methods.
+ * Use the `useICANID` hook in your components to access the auth state and methods.
  *
  * TUser is an optional type param to provide a type to the `user` field.
  */
-const useAuth0 = <TUser extends User = User>(
+const useICANID = <TUser extends User = User>(
   context = Auth0Context
 ): Auth0ContextInterface<TUser> =>
   useContext(context) as Auth0ContextInterface<TUser>;
 
-export default useAuth0;
+export default useICANID;

@@ -1,4 +1,4 @@
-import { User } from '@auth0/auth0-spa-js';
+import { User } from '@icanid/icanid-sdk-spa-js';
 import { AuthState } from './auth-state';
 
 type Action =
@@ -15,7 +15,7 @@ type Action =
   | { type: 'ERROR'; error: Error };
 
 /**
- * Handles how that state changes in the `useAuth0` hook.
+ * Handles how that state changes in the `useICANID` hook.
  */
 export const reducer = (state: AuthState, action: Action): AuthState => {
   switch (action.type) {

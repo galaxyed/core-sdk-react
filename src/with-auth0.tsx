@@ -23,7 +23,7 @@ export interface WithAuth0Props {
  *
  * Wrap your class components in this Higher Order Component to give them access to the Auth0Context.
  *
- * Providing a context as the second argument allows you to configure the Auth0Provider the Auth0Context
+ * Providing a context as the second argument allows you to configure the ICANIDProvider the Auth0Context
  * should come from f you have multiple within your application.
  */
 const withAuth0 = <P extends WithAuth0Props>(

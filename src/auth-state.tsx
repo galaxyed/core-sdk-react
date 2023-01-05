@@ -1,7 +1,7 @@
-import { User } from '@auth0/auth0-spa-js';
+import { User } from '@auth0/icanid-sdk-spa-js';
 
 /**
- * The auth state which, when combined with the auth methods, make up the return object of the `useAuth0` hook.
+ * The auth state which, when combined with the auth methods, make up the return object of the `useICANID` hook.
  */
 export interface AuthState<TUser extends User = User> {
   error?: Error;
