@@ -171,7 +171,7 @@ export interface ICANIDProviderOptions {
    * Context to be used when creating the ICANIDProvider, defaults to the internally created context.
    *
    * This allows multiple ICANIDProviders to be nested within the same application, the context value can then be
-   * passed to useAuth0, withAuth0, or withAuthenticationRequired to use that specific ICANIDProvider to access
+   * passed to useICANID, withICANID, or withAuthenticationRequired to use that specific ICANIDProvider to access
    * auth state and methods specifically tied to the provider that the context belongs to.
    *
    * When using multiple ICANIDProviders in a single application you should do the following to ensure sessions are not

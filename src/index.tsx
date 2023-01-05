@@ -4,7 +4,7 @@ export {
   AppState,
 } from './icanid-provider';
 export { default as useICANID } from './use-icanid';
-export { default as withAuth0, WithAuth0Props } from './with-auth0';
+export { default as withICANID, WithICANIDProps } from './with-icanid';
 export {
   default as withAuthenticationRequired,
   WithAuthenticationRequiredOptions,

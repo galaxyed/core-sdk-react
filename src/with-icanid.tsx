@@ -2,9 +2,9 @@ import React, { ComponentType } from 'react';
 import ICANIDContext, { ICANIDContextInterface } from './icanid-context';
 
 /**
- * Components wrapped in `withAuth0` will have an additional `icanid` prop
+ * Components wrapped in `withICANID` will have an additional `icanid` prop
  */
-export interface WithAuth0Props {
+export interface WithICANIDProps {
   auth0: ICANIDContextInterface;
 }
 
@@ -17,8 +17,8 @@ export interface WithAuth0Props {
  *     return <div>Hello {user.name}!</div>
  *   }
  * }
- * // Wrap your class component in withAuth0
- * export default withAuth0(MyComponent);
+ * // Wrap your class component in withICANID
+ * export default withICANID(MyComponent);
  * ```
  *
  * Wrap your class components in this Higher Order Component to give them access to the ICANIDContext.
@@ -26,10 +26,10 @@ export interface WithAuth0Props {
  * Providing a context as the second argument allows you to configure the ICANIDProvider the ICANIDContext
  * should come from f you have multiple within your application.
  */
-const withAuth0 = <P extends WithAuth0Props>(
+const withICANID = <P extends WithICANIDProps>(
   Component: ComponentType<P>,
   context = ICANIDContext
-): ComponentType<Omit<P, keyof WithAuth0Props>> => {
+): ComponentType<Omit<P, keyof WithICANIDProps>> => {
   return function WithAuth(props): JSX.Element {
     return (
       <context.Consumer>
@@ -41,4 +41,4 @@ const withAuth0 = <P extends WithAuth0Props>(
   };
 };
 
-export default withAuth0;
+export default withICANID;
