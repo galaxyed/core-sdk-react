@@ -13,7 +13,7 @@ const Users = () => {
     data: users = [],
   } = useApi(`http://localhost:${PORT}/users`, {
     audience: process.env.NEXT_PUBLIC_AUDIENCE,
-    scope: 'read:users',
+    scope: 'profile email read:users',
   });
 
   if (loading) {

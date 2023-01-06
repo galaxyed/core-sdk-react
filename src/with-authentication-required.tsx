@@ -1,7 +1,9 @@
 import React, { ComponentType, useEffect, FC } from 'react';
-import { RedirectLoginOptions, User } from '@icanid/icanid-sdk-spa-js';
 import useICANID from './use-icanid';
-import ICANIDContext, { ICANIDContextInterface } from './icanid-context';
+import ICANIDContext, {
+  ICANIDContextInterface,
+  RedirectLoginOptions,
+} from './auth0-context';
 
 /**
  * @ignore
@@ -62,12 +64,6 @@ export interface WithAuthenticationRequiredOptions {
    */
   loginOptions?: RedirectLoginOptions;
   /**
-   * Check the user object for JWT claims and return a boolean indicating
-   * whether or not they are authorized to view the component.
-   */
-  claimCheck?: (claims?: User) => boolean;
-
-  /**
    * The context to be used when calling useICANID, this should only be provided if you are using multiple ICANIDProviders
    * within your application and you wish to tie a specific component to a ICANIDProvider other than the ICANIDProvider
    * associated with the default ICANIDContext.
@@ -91,22 +87,15 @@ const withAuthenticationRequired = <P extends object>(
     const {
       returnTo = defaultReturnTo,
       onRedirecting = defaultOnRedirecting,
-      claimCheck = (): boolean => true,
       loginOptions,
       context = ICANIDContext,
     } = options;
 
-    const { user, isAuthenticated, isLoading, loginWithRedirect } =
+    const { isAuthenticated, isLoading, loginWithRedirect } =
       useICANID(context);
 
-    /**
-     * The route is authenticated if the user has valid auth and there are no
-     * JWT claim mismatches.
-     */
-    const routeIsAuthenticated = isAuthenticated && claimCheck(user);
-
     useEffect(() => {
-      if (isLoading || routeIsAuthenticated) {
+      if (isLoading || isAuthenticated) {
         return;
       }
       const opts = {
@@ -119,15 +108,9 @@ const withAuthenticationRequired = <P extends object>(
       (async (): Promise<void> => {
         await loginWithRedirect(opts);
       })();
-    }, [
-      isLoading,
-      routeIsAuthenticated,
-      loginWithRedirect,
-      loginOptions,
-      returnTo,
-    ]);
+    }, [isLoading, isAuthenticated, loginWithRedirect, loginOptions, returnTo]);
 
-    return routeIsAuthenticated ? <Component {...props} /> : onRedirecting();
+    return isAuthenticated ? <Component {...props} /> : onRedirecting();
   };
 };
 

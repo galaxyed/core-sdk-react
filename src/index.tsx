@@ -13,14 +13,14 @@ export {
   default as ICANIDContext,
   ICANIDContextInterface,
   initialContext,
+  LogoutOptions,
   RedirectLoginOptions,
 } from './icanid-context';
 export {
+  AuthorizationParams,
   PopupLoginOptions,
   PopupConfigOptions,
-  GetIdTokenClaimsOptions,
   GetTokenWithPopupOptions,
-  LogoutOptions,
   LogoutUrlOptions,
   CacheLocation,
   GetTokenSilentlyOptions,
