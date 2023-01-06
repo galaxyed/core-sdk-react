@@ -14,7 +14,7 @@ import {
   LogoutUrlOptions,
   PopupLoginOptions,
   PopupConfigOptions,
-  RedirectLoginOptions as Auth0RedirectLoginOptions,
+  RedirectLoginOptions as ICANIDRedirectLoginOptions,
   GetTokenWithPopupOptions,
   RedirectLoginResult,
   ICache,
@@ -223,7 +223,7 @@ const toAuth0ClientOptions = (
  */
 const toAuth0LoginRedirectOptions = (
   opts?: RedirectLoginOptions
-): Auth0RedirectLoginOptions | undefined => {
+): ICANIDRedirectLoginOptions | undefined => {
   if (!opts) {
     return;
   }

@@ -8,7 +8,7 @@ import {
   LogoutUrlOptions,
   PopupLoginOptions,
   PopupConfigOptions,
-  RedirectLoginOptions as Auth0RedirectLoginOptions,
+  RedirectLoginOptions as ICANIDRedirectLoginOptions,
   RedirectLoginResult,
   User,
   GetTokenSilentlyVerboseResponse,
@@ -157,7 +157,7 @@ export interface ICANIDContextInterface<TUser extends User = User>
    * provided as arguments. Random and secure `state` and `nonce`
    * parameters will be auto-generated.
    */
-  buildAuthorizeUrl: (options?: Auth0RedirectLoginOptions) => Promise<string>;
+  buildAuthorizeUrl: (options?: ICANIDRedirectLoginOptions) => Promise<string>;
 
   /**
    * ```js
