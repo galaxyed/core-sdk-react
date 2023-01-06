@@ -12,7 +12,7 @@ export function Users() {
     data: users = [],
   } = useApi(`http://localhost:${PORT}/users`, {
     audience: process.env.REACT_APP_AUDIENCE,
-    scope: 'read:users',
+    scope: 'profile email read:users',
   });
 
   if (loading) {

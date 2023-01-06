@@ -1,4 +1,4 @@
-const { Provider, interactionPolicy } = require('oidc-provider');
+import Provider, { interactionPolicy } from 'oidc-provider';
 
 const { base, Prompt, Check } = interactionPolicy;
 

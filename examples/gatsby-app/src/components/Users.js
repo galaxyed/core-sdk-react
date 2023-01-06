@@ -1,5 +1,5 @@
-import { useApi } from '../hooks/use-api';
 import React from 'react';
+import { useApi } from '../hooks/use-api';
 import { Loading } from './Loading';
 import { Error } from './Error';
 
@@ -12,7 +12,7 @@ export function Users() {
     data: users = [],
   } = useApi(`http://localhost:${PORT}/users`, {
     audience: process.env.GATSBY_AUDIENCE,
-    scope: 'read:users',
+    scope: 'profile email read:users',
   });
 
   if (loading) {
