@@ -12,7 +12,7 @@ import {
 } from '@icanid/icanid-sdk-spa-js';
 import { createContext } from 'react';
 import { AuthState, initialAuthState } from './auth-state';
-import { AppState } from './auth0-provider';
+import { AppState } from './icanid-provider';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface LogoutOptions extends Omit<SPALogoutOptions, 'onRedirect'> {}

@@ -5,15 +5,15 @@ import ICANIDContext, { ICANIDContextInterface } from './icanid-context';
  * Components wrapped in `withICANID` will have an additional `icanid` prop
  */
 export interface WithICANIDProps {
-  auth0: ICANIDContextInterface;
+  icanid: ICANIDContextInterface;
 }
 
 /**
  * ```jsx
  * class MyComponent extends Component {
  *   render() {
- *     // Access the auth context from the `auth0` prop
- *     const { user } = this.props.auth0;
+ *     // Access the auth context from the `icanid` prop
+ *     const { user } = this.props.icanid;
  *     return <div>Hello {user.name}!</div>
  *   }
  * }
@@ -34,7 +34,7 @@ const withICANID = <P extends WithICANIDProps>(
     return (
       <context.Consumer>
         {(auth: ICANIDContextInterface): JSX.Element => (
-          <Component {...(props as P)} auth0={auth} />
+          <Component {...(props as P)} icanid={auth} />
         )}
       </context.Consumer>
     );

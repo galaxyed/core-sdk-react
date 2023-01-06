@@ -3,7 +3,7 @@ import useICANID from './use-icanid';
 import ICANIDContext, {
   ICANIDContextInterface,
   RedirectLoginOptions,
-} from './auth0-context';
+} from './icanid-context';
 
 /**
  * @ignore
